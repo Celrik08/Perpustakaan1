@@ -1,0 +1,1854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="perpustakaanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tb_buku">
+          <Key>
+            <PropertyRef Name="isbn" />
+          </Key>
+          <Property Name="isbn" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="judul_buku" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="id_penulis" Type="int" Nullable="false" />
+          <Property Name="id_penerbit" Type="int" Nullable="false" />
+          <Property Name="id_kategori" Type="int" Nullable="false" />
+          <Property Name="tanggal_terbit" Type="date" Nullable="false" />
+          <Property Name="jumlah_halaman" Type="int" Nullable="false" />
+          <Property Name="stok" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_buku_masuk">
+          <Key>
+            <PropertyRef Name="id_buku_masuk" />
+          </Key>
+          <Property Name="id_buku_masuk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pengirim" Type="int" Nullable="false" />
+          <Property Name="id_username" Type="int" Nullable="false" />
+          <Property Name="tanggal_masuk" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_detail_buku_masuk">
+          <Key>
+            <PropertyRef Name="id_detail_buku_masuk" />
+          </Key>
+          <Property Name="id_detail_buku_masuk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_buku_masuk" Type="int" Nullable="false" />
+          <Property Name="isbn" Type="int" Nullable="false" />
+          <Property Name="id_satuan" Type="int" Nullable="false" />
+          <Property Name="jumlah_isi" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_detail_kembali">
+          <Key>
+            <PropertyRef Name="id_detail_kembali" />
+          </Key>
+          <Property Name="id_detail_kembali" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_kembali" Type="int" Nullable="false" />
+          <Property Name="isbn" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_detail_pinjam">
+          <Key>
+            <PropertyRef Name="id_detail_pinjam" />
+          </Key>
+          <Property Name="id_detail_pinjam" Type="int" Nullable="false" />
+          <Property Name="id_pinjam" Type="int" Nullable="false" />
+          <Property Name="isbn" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_kategori">
+          <Key>
+            <PropertyRef Name="id_kategori" />
+          </Key>
+          <Property Name="id_kategori" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_kategori" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_kelas">
+          <Key>
+            <PropertyRef Name="id_kelas" />
+          </Key>
+          <Property Name="id_kelas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_kelas" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_kembali">
+          <Key>
+            <PropertyRef Name="id_kembali" />
+          </Key>
+          <Property Name="id_kembali" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tanggal_kembali" Type="datetime" Nullable="false" />
+          <Property Name="nisn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="banyak_buku" Type="int" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+          <Property Name="id_username" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_keranjang">
+          <Key>
+            <PropertyRef Name="id_keranjang" />
+          </Key>
+          <Property Name="id_keranjang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pinjam" Type="int" Nullable="false" />
+          <Property Name="isbn" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_pegawai">
+          <Key>
+            <PropertyRef Name="id_pegawai" />
+          </Key>
+          <Property Name="id_pegawai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_pegawai" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="jenis_kelamin" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="no_hp" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tempat_lahir" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tanggal_lahir" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_penerbit">
+          <Key>
+            <PropertyRef Name="id_penerbit" />
+          </Key>
+          <Property Name="id_penerbit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_penerbit" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="no_hp" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_pengirim">
+          <Key>
+            <PropertyRef Name="id_pengirim" />
+          </Key>
+          <Property Name="id_pengirim" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_pengirim" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="no_hp" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_penuliss">
+          <Key>
+            <PropertyRef Name="id_penulis" />
+          </Key>
+          <Property Name="id_penulis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_penulis" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="no_hp" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_pinjam">
+          <Key>
+            <PropertyRef Name="id_pinjam" />
+          </Key>
+          <Property Name="id_pinjam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tanggal_pinjam" Type="datetime" Nullable="false" />
+          <Property Name="nisn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="banyak_buku" Type="int" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+          <Property Name="id_username" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_rak">
+          <Key>
+            <PropertyRef Name="id_rak" />
+          </Key>
+          <Property Name="id_rak" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isbn" Type="int" Nullable="false" />
+          <Property Name="id_kategori" Type="int" Nullable="false" />
+          <Property Name="lokasi_rak" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_riwayat_kembali">
+          <Key>
+            <PropertyRef Name="id_riwayat_kembali" />
+          </Key>
+          <Property Name="id_riwayat_kembali" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nisn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isbn" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="tanggal_kembali" Type="datetime" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_riwayat_pinjam">
+          <Key>
+            <PropertyRef Name="id_riwayat_pinjam" />
+          </Key>
+          <Property Name="id_riwayat_pinjam" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nisn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isbn" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="tanggal_pinjam" Type="datetime" Nullable="false" />
+          <Property Name="id_status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_satuan">
+          <Key>
+            <PropertyRef Name="id_satuan" />
+          </Key>
+          <Property Name="id_satuan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_satuan" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_siswa">
+          <Key>
+            <PropertyRef Name="nisn" />
+          </Key>
+          <Property Name="nisn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nama_siswa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_kelas" Type="int" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="no_hp" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_status">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="id_username" />
+          </Key>
+          <Property Name="id_username" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_pegawai" Type="int" Nullable="false" />
+          <Property Name="nisn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tb_buku_masuk_tb_pengirim">
+          <End Role="tb_pengirim" Type="Self.tb_pengirim" Multiplicity="1" />
+          <End Role="tb_buku_masuk" Type="Self.tb_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pengirim">
+              <PropertyRef Name="id_pengirim" />
+            </Principal>
+            <Dependent Role="tb_buku_masuk">
+              <PropertyRef Name="id_pengirim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_masuk_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_buku_masuk" Type="Self.tb_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_username" />
+            </Principal>
+            <Dependent Role="tb_buku_masuk">
+              <PropertyRef Name="id_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_tb_kategori">
+          <End Role="tb_kategori" Type="Self.tb_kategori" Multiplicity="1" />
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kategori">
+              <PropertyRef Name="id_kategori" />
+            </Principal>
+            <Dependent Role="tb_buku">
+              <PropertyRef Name="id_kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_tb_penerbit">
+          <End Role="tb_penerbit" Type="Self.tb_penerbit" Multiplicity="1" />
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_penerbit">
+              <PropertyRef Name="id_penerbit" />
+            </Principal>
+            <Dependent Role="tb_buku">
+              <PropertyRef Name="id_penerbit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_tb_penuliss">
+          <End Role="tb_penuliss" Type="Self.tb_penuliss" Multiplicity="1" />
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_penuliss">
+              <PropertyRef Name="id_penulis" />
+            </Principal>
+            <Dependent Role="tb_buku">
+              <PropertyRef Name="id_penulis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_buku_masuk_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_detail_buku_masuk" Type="Self.tb_detail_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_detail_buku_masuk">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_buku_masuk_tb_buku_masuk">
+          <End Role="tb_buku_masuk" Type="Self.tb_buku_masuk" Multiplicity="1" />
+          <End Role="tb_detail_buku_masuk" Type="Self.tb_detail_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku_masuk">
+              <PropertyRef Name="id_buku_masuk" />
+            </Principal>
+            <Dependent Role="tb_detail_buku_masuk">
+              <PropertyRef Name="id_buku_masuk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_buku_masuk_tb_satuan">
+          <End Role="tb_satuan" Type="Self.tb_satuan" Multiplicity="1" />
+          <End Role="tb_detail_buku_masuk" Type="Self.tb_detail_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_satuan">
+              <PropertyRef Name="id_satuan" />
+            </Principal>
+            <Dependent Role="tb_detail_buku_masuk">
+              <PropertyRef Name="id_satuan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_kembali_tb_buku1">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_detail_kembali" Type="Self.tb_detail_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_detail_kembali">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_kembali_tb_kembali">
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="1" />
+          <End Role="tb_detail_kembali" Type="Self.tb_detail_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kembali">
+              <PropertyRef Name="id_kembali" />
+            </Principal>
+            <Dependent Role="tb_detail_kembali">
+              <PropertyRef Name="id_kembali" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_pinjam_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_detail_pinjam" Type="Self.tb_detail_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_detail_pinjam">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_transaksi_tb_master_transaksi1">
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="1" />
+          <End Role="tb_detail_pinjam" Type="Self.tb_detail_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pinjam">
+              <PropertyRef Name="id_pinjam" />
+            </Principal>
+            <Dependent Role="tb_detail_pinjam">
+              <PropertyRef Name="id_pinjam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_kembali_tb_kembali">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_kembali">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_kembali_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_kembali">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_kembali_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_username" />
+            </Principal>
+            <Dependent Role="tb_kembali">
+              <PropertyRef Name="id_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_keranjang_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_keranjang" Type="Self.tb_keranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_keranjang">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_keranjang_tb_pinjam">
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="1" />
+          <End Role="tb_keranjang" Type="Self.tb_keranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pinjam">
+              <PropertyRef Name="id_pinjam" />
+            </Principal>
+            <Dependent Role="tb_keranjang">
+              <PropertyRef Name="id_pinjam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_master_transaksi_tb_anggotas">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_pinjam">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_master_transaksi_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_username" />
+            </Principal>
+            <Dependent Role="tb_pinjam">
+              <PropertyRef Name="id_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_pinjam_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_pinjam">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_rak_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_rak" Type="Self.tb_rak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_rak">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_rak_tb_kategori">
+          <End Role="tb_kategori" Type="Self.tb_kategori" Multiplicity="1" />
+          <End Role="tb_rak" Type="Self.tb_rak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kategori">
+              <PropertyRef Name="id_kategori" />
+            </Principal>
+            <Dependent Role="tb_rak">
+              <PropertyRef Name="id_kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_kembali_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_riwayat_kembali" Type="Self.tb_riwayat_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_kembali">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_kembali_tb_siswa">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_riwayat_kembali" Type="Self.tb_riwayat_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_kembali">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_kembali_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_riwayat_kembali" Type="Self.tb_riwayat_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_riwayat_kembali">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_pinjam_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_riwayat_pinjam" Type="Self.tb_riwayat_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_pinjam">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_pinjam_tb_riwayat_pinjam">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_riwayat_pinjam" Type="Self.tb_riwayat_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_pinjam">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_pinjam_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_riwayat_pinjam" Type="Self.tb_riwayat_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_riwayat_pinjam">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_siswa_tb_kelas">
+          <End Role="tb_kelas" Type="Self.tb_kelas" Multiplicity="1" />
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kelas">
+              <PropertyRef Name="id_kelas" />
+            </Principal>
+            <Dependent Role="tb_siswa">
+              <PropertyRef Name="id_kelas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_pegawai">
+          <End Role="tb_pegawai" Type="Self.tb_pegawai" Multiplicity="1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pegawai">
+              <PropertyRef Name="id_pegawai" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="id_pegawai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_role">
+          <End Role="tb_role" Type="Self.tb_role" Multiplicity="1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_siswa">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="perpustakaanModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_buku" EntityType="Self.tb_buku" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_buku_masuk" EntityType="Self.tb_buku_masuk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_detail_buku_masuk" EntityType="Self.tb_detail_buku_masuk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_detail_kembali" EntityType="Self.tb_detail_kembali" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_detail_pinjam" EntityType="Self.tb_detail_pinjam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_kategori" EntityType="Self.tb_kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_kelas" EntityType="Self.tb_kelas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_kembali" EntityType="Self.tb_kembali" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_keranjang" EntityType="Self.tb_keranjang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_pegawai" EntityType="Self.tb_pegawai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_penerbit" EntityType="Self.tb_penerbit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_pengirim" EntityType="Self.tb_pengirim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_penuliss" EntityType="Self.tb_penuliss" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_pinjam" EntityType="Self.tb_pinjam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_rak" EntityType="Self.tb_rak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_riwayat_kembali" EntityType="Self.tb_riwayat_kembali" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_riwayat_pinjam" EntityType="Self.tb_riwayat_pinjam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_role" EntityType="Self.tb_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_satuan" EntityType="Self.tb_satuan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_siswa" EntityType="Self.tb_siswa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_status" EntityType="Self.tb_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_buku_masuk_tb_pengirim" Association="Self.FK_tb_buku_masuk_tb_pengirim">
+            <End Role="tb_pengirim" EntitySet="tb_pengirim" />
+            <End Role="tb_buku_masuk" EntitySet="tb_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_masuk_tb_user" Association="Self.FK_tb_buku_masuk_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_buku_masuk" EntitySet="tb_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_tb_kategori" Association="Self.FK_tb_buku_tb_kategori">
+            <End Role="tb_kategori" EntitySet="tb_kategori" />
+            <End Role="tb_buku" EntitySet="tb_buku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_tb_penerbit" Association="Self.FK_tb_buku_tb_penerbit">
+            <End Role="tb_penerbit" EntitySet="tb_penerbit" />
+            <End Role="tb_buku" EntitySet="tb_buku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_tb_penuliss" Association="Self.FK_tb_buku_tb_penuliss">
+            <End Role="tb_penuliss" EntitySet="tb_penuliss" />
+            <End Role="tb_buku" EntitySet="tb_buku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_buku_masuk_tb_buku" Association="Self.FK_tb_detail_buku_masuk_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_detail_buku_masuk" EntitySet="tb_detail_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_buku_masuk_tb_buku_masuk" Association="Self.FK_tb_detail_buku_masuk_tb_buku_masuk">
+            <End Role="tb_buku_masuk" EntitySet="tb_buku_masuk" />
+            <End Role="tb_detail_buku_masuk" EntitySet="tb_detail_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_buku_masuk_tb_satuan" Association="Self.FK_tb_detail_buku_masuk_tb_satuan">
+            <End Role="tb_satuan" EntitySet="tb_satuan" />
+            <End Role="tb_detail_buku_masuk" EntitySet="tb_detail_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_kembali_tb_buku1" Association="Self.FK_tb_detail_kembali_tb_buku1">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_detail_kembali" EntitySet="tb_detail_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_kembali_tb_kembali" Association="Self.FK_tb_detail_kembali_tb_kembali">
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+            <End Role="tb_detail_kembali" EntitySet="tb_detail_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_pinjam_tb_buku" Association="Self.FK_tb_detail_pinjam_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_detail_pinjam" EntitySet="tb_detail_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_transaksi_tb_master_transaksi1" Association="Self.FK_tb_detail_transaksi_tb_master_transaksi1">
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+            <End Role="tb_detail_pinjam" EntitySet="tb_detail_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_kembali_tb_kembali" Association="Self.FK_tb_kembali_tb_kembali">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_kembali_tb_status" Association="Self.FK_tb_kembali_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_kembali_tb_user" Association="Self.FK_tb_kembali_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_keranjang_tb_buku" Association="Self.FK_tb_keranjang_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_keranjang" EntitySet="tb_keranjang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_keranjang_tb_pinjam" Association="Self.FK_tb_keranjang_tb_pinjam">
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+            <End Role="tb_keranjang" EntitySet="tb_keranjang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_master_transaksi_tb_anggotas" Association="Self.FK_tb_master_transaksi_tb_anggotas">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_master_transaksi_tb_user" Association="Self.FK_tb_master_transaksi_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_pinjam_tb_status" Association="Self.FK_tb_pinjam_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_rak_tb_buku" Association="Self.FK_tb_rak_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_rak" EntitySet="tb_rak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_rak_tb_kategori" Association="Self.FK_tb_rak_tb_kategori">
+            <End Role="tb_kategori" EntitySet="tb_kategori" />
+            <End Role="tb_rak" EntitySet="tb_rak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_kembali_tb_buku" Association="Self.FK_tb_riwayat_kembali_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_riwayat_kembali" EntitySet="tb_riwayat_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_kembali_tb_siswa" Association="Self.FK_tb_riwayat_kembali_tb_siswa">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_riwayat_kembali" EntitySet="tb_riwayat_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_kembali_tb_status" Association="Self.FK_tb_riwayat_kembali_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_riwayat_kembali" EntitySet="tb_riwayat_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_pinjam_tb_buku" Association="Self.FK_tb_riwayat_pinjam_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_riwayat_pinjam" EntitySet="tb_riwayat_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_pinjam_tb_riwayat_pinjam" Association="Self.FK_tb_riwayat_pinjam_tb_riwayat_pinjam">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_riwayat_pinjam" EntitySet="tb_riwayat_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_pinjam_tb_status" Association="Self.FK_tb_riwayat_pinjam_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_riwayat_pinjam" EntitySet="tb_riwayat_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_siswa_tb_kelas" Association="Self.FK_tb_siswa_tb_kelas">
+            <End Role="tb_kelas" EntitySet="tb_kelas" />
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_pegawai" Association="Self.FK_tb_user_tb_pegawai">
+            <End Role="tb_pegawai" EntitySet="tb_pegawai" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_role" Association="Self.FK_tb_user_tb_role">
+            <End Role="tb_role" EntitySet="tb_role" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_siswa" Association="Self.FK_tb_user_tb_siswa">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="perpustakaanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tb_buku">
+          <Key>
+            <PropertyRef Name="isbn" />
+          </Key>
+          <Property Name="isbn" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="judul_buku" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_penulis" Type="Int32" Nullable="false" />
+          <Property Name="id_penerbit" Type="Int32" Nullable="false" />
+          <Property Name="id_kategori" Type="Int32" Nullable="false" />
+          <Property Name="tanggal_terbit" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="jumlah_halaman" Type="Int32" Nullable="false" />
+          <Property Name="stok" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_kategori" Relationship="Self.FK_tb_buku_tb_kategori" FromRole="tb_buku" ToRole="tb_kategori" />
+          <NavigationProperty Name="tb_penerbit" Relationship="Self.FK_tb_buku_tb_penerbit" FromRole="tb_buku" ToRole="tb_penerbit" />
+          <NavigationProperty Name="tb_penuliss" Relationship="Self.FK_tb_buku_tb_penuliss" FromRole="tb_buku" ToRole="tb_penuliss" />
+          <NavigationProperty Name="tb_detail_buku_masuk" Relationship="Self.FK_tb_detail_buku_masuk_tb_buku" FromRole="tb_buku" ToRole="tb_detail_buku_masuk" />
+          <NavigationProperty Name="tb_detail_kembali" Relationship="Self.FK_tb_detail_kembali_tb_buku1" FromRole="tb_buku" ToRole="tb_detail_kembali" />
+          <NavigationProperty Name="tb_detail_pinjam" Relationship="Self.FK_tb_detail_pinjam_tb_buku" FromRole="tb_buku" ToRole="tb_detail_pinjam" />
+          <NavigationProperty Name="tb_keranjang" Relationship="Self.FK_tb_keranjang_tb_buku" FromRole="tb_buku" ToRole="tb_keranjang" />
+          <NavigationProperty Name="tb_rak" Relationship="Self.FK_tb_rak_tb_buku" FromRole="tb_buku" ToRole="tb_rak" />
+          <NavigationProperty Name="tb_riwayat_kembali" Relationship="Self.FK_tb_riwayat_kembali_tb_buku" FromRole="tb_buku" ToRole="tb_riwayat_kembali" />
+          <NavigationProperty Name="tb_riwayat_pinjam" Relationship="Self.FK_tb_riwayat_pinjam_tb_buku" FromRole="tb_buku" ToRole="tb_riwayat_pinjam" />
+        </EntityType>
+        <EntityType Name="tb_buku_masuk">
+          <Key>
+            <PropertyRef Name="id_buku_masuk" />
+          </Key>
+          <Property Name="id_buku_masuk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pengirim" Type="Int32" Nullable="false" />
+          <Property Name="id_username" Type="Int32" Nullable="false" />
+          <Property Name="tanggal_masuk" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tb_pengirim" Relationship="Self.FK_tb_buku_masuk_tb_pengirim" FromRole="tb_buku_masuk" ToRole="tb_pengirim" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_buku_masuk_tb_user" FromRole="tb_buku_masuk" ToRole="tb_user" />
+          <NavigationProperty Name="tb_detail_buku_masuk" Relationship="Self.FK_tb_detail_buku_masuk_tb_buku_masuk" FromRole="tb_buku_masuk" ToRole="tb_detail_buku_masuk" />
+        </EntityType>
+        <EntityType Name="tb_detail_buku_masuk">
+          <Key>
+            <PropertyRef Name="id_detail_buku_masuk" />
+          </Key>
+          <Property Name="id_detail_buku_masuk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_buku_masuk" Type="Int32" Nullable="false" />
+          <Property Name="isbn" Type="Int32" Nullable="false" />
+          <Property Name="id_satuan" Type="Int32" Nullable="false" />
+          <Property Name="jumlah_isi" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_detail_buku_masuk_tb_buku" FromRole="tb_detail_buku_masuk" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_buku_masuk" Relationship="Self.FK_tb_detail_buku_masuk_tb_buku_masuk" FromRole="tb_detail_buku_masuk" ToRole="tb_buku_masuk" />
+          <NavigationProperty Name="tb_satuan" Relationship="Self.FK_tb_detail_buku_masuk_tb_satuan" FromRole="tb_detail_buku_masuk" ToRole="tb_satuan" />
+        </EntityType>
+        <EntityType Name="tb_detail_kembali">
+          <Key>
+            <PropertyRef Name="id_detail_kembali" />
+          </Key>
+          <Property Name="id_detail_kembali" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_kembali" Type="Int32" Nullable="false" />
+          <Property Name="isbn" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_detail_kembali_tb_buku1" FromRole="tb_detail_kembali" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_kembali" Relationship="Self.FK_tb_detail_kembali_tb_kembali" FromRole="tb_detail_kembali" ToRole="tb_kembali" />
+        </EntityType>
+        <EntityType Name="tb_detail_pinjam">
+          <Key>
+            <PropertyRef Name="id_detail_pinjam" />
+          </Key>
+          <Property Name="id_detail_pinjam" Type="Int32" Nullable="false" />
+          <Property Name="id_pinjam" Type="Int32" Nullable="false" />
+          <Property Name="isbn" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_detail_pinjam_tb_buku" FromRole="tb_detail_pinjam" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_pinjam" Relationship="Self.FK_tb_detail_transaksi_tb_master_transaksi1" FromRole="tb_detail_pinjam" ToRole="tb_pinjam" />
+        </EntityType>
+        <EntityType Name="tb_kategori">
+          <Key>
+            <PropertyRef Name="id_kategori" />
+          </Key>
+          <Property Name="id_kategori" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_kategori" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_buku_tb_kategori" FromRole="tb_kategori" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_rak" Relationship="Self.FK_tb_rak_tb_kategori" FromRole="tb_kategori" ToRole="tb_rak" />
+        </EntityType>
+        <EntityType Name="tb_kelas">
+          <Key>
+            <PropertyRef Name="id_kelas" />
+          </Key>
+          <Property Name="id_kelas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_kelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_siswa" Relationship="Self.FK_tb_siswa_tb_kelas" FromRole="tb_kelas" ToRole="tb_siswa" />
+        </EntityType>
+        <EntityType Name="tb_kembali">
+          <Key>
+            <PropertyRef Name="id_kembali" />
+          </Key>
+          <Property Name="id_kembali" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tanggal_kembali" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nisn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="banyak_buku" Type="Int32" Nullable="false" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <Property Name="id_username" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_detail_kembali" Relationship="Self.FK_tb_detail_kembali_tb_kembali" FromRole="tb_kembali" ToRole="tb_detail_kembali" />
+          <NavigationProperty Name="tb_siswa" Relationship="Self.FK_tb_kembali_tb_kembali" FromRole="tb_kembali" ToRole="tb_siswa" />
+          <NavigationProperty Name="tb_status" Relationship="Self.FK_tb_kembali_tb_status" FromRole="tb_kembali" ToRole="tb_status" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_kembali_tb_user" FromRole="tb_kembali" ToRole="tb_user" />
+        </EntityType>
+        <EntityType Name="tb_keranjang">
+          <Key>
+            <PropertyRef Name="id_keranjang" />
+          </Key>
+          <Property Name="id_keranjang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pinjam" Type="Int32" Nullable="false" />
+          <Property Name="isbn" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_keranjang_tb_buku" FromRole="tb_keranjang" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_pinjam" Relationship="Self.FK_tb_keranjang_tb_pinjam" FromRole="tb_keranjang" ToRole="tb_pinjam" />
+        </EntityType>
+        <EntityType Name="tb_pegawai">
+          <Key>
+            <PropertyRef Name="id_pegawai" />
+          </Key>
+          <Property Name="id_pegawai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_pegawai" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jenis_kelamin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_hp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tempat_lahir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tanggal_lahir" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_user_tb_pegawai" FromRole="tb_pegawai" ToRole="tb_user" />
+        </EntityType>
+        <EntityType Name="tb_penerbit">
+          <Key>
+            <PropertyRef Name="id_penerbit" />
+          </Key>
+          <Property Name="id_penerbit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_penerbit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_hp" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_buku_tb_penerbit" FromRole="tb_penerbit" ToRole="tb_buku" />
+        </EntityType>
+        <EntityType Name="tb_pengirim">
+          <Key>
+            <PropertyRef Name="id_pengirim" />
+          </Key>
+          <Property Name="id_pengirim" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_pengirim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_hp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_buku_masuk" Relationship="Self.FK_tb_buku_masuk_tb_pengirim" FromRole="tb_pengirim" ToRole="tb_buku_masuk" />
+        </EntityType>
+        <EntityType Name="tb_penuliss">
+          <Key>
+            <PropertyRef Name="id_penulis" />
+          </Key>
+          <Property Name="id_penulis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_penulis" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_hp" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_buku_tb_penuliss" FromRole="tb_penuliss" ToRole="tb_buku" />
+        </EntityType>
+        <EntityType Name="tb_pinjam">
+          <Key>
+            <PropertyRef Name="id_pinjam" />
+          </Key>
+          <Property Name="id_pinjam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tanggal_pinjam" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="nisn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="banyak_buku" Type="Int32" Nullable="false" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <Property Name="id_username" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_detail_pinjam" Relationship="Self.FK_tb_detail_transaksi_tb_master_transaksi1" FromRole="tb_pinjam" ToRole="tb_detail_pinjam" />
+          <NavigationProperty Name="tb_keranjang" Relationship="Self.FK_tb_keranjang_tb_pinjam" FromRole="tb_pinjam" ToRole="tb_keranjang" />
+          <NavigationProperty Name="tb_siswa" Relationship="Self.FK_tb_master_transaksi_tb_anggotas" FromRole="tb_pinjam" ToRole="tb_siswa" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_master_transaksi_tb_user" FromRole="tb_pinjam" ToRole="tb_user" />
+          <NavigationProperty Name="tb_status" Relationship="Self.FK_tb_pinjam_tb_status" FromRole="tb_pinjam" ToRole="tb_status" />
+        </EntityType>
+        <EntityType Name="tb_rak">
+          <Key>
+            <PropertyRef Name="id_rak" />
+          </Key>
+          <Property Name="id_rak" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isbn" Type="Int32" Nullable="false" />
+          <Property Name="id_kategori" Type="Int32" Nullable="false" />
+          <Property Name="lokasi_rak" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_rak_tb_buku" FromRole="tb_rak" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_kategori" Relationship="Self.FK_tb_rak_tb_kategori" FromRole="tb_rak" ToRole="tb_kategori" />
+        </EntityType>
+        <EntityType Name="tb_riwayat_kembali">
+          <Key>
+            <PropertyRef Name="id_riwayat_kembali" />
+          </Key>
+          <Property Name="id_riwayat_kembali" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nisn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isbn" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="tanggal_kembali" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_riwayat_kembali_tb_buku" FromRole="tb_riwayat_kembali" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_siswa" Relationship="Self.FK_tb_riwayat_kembali_tb_siswa" FromRole="tb_riwayat_kembali" ToRole="tb_siswa" />
+          <NavigationProperty Name="tb_status" Relationship="Self.FK_tb_riwayat_kembali_tb_status" FromRole="tb_riwayat_kembali" ToRole="tb_status" />
+        </EntityType>
+        <EntityType Name="tb_riwayat_pinjam">
+          <Key>
+            <PropertyRef Name="id_riwayat_pinjam" />
+          </Key>
+          <Property Name="id_riwayat_pinjam" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nisn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isbn" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="tanggal_pinjam" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_buku" Relationship="Self.FK_tb_riwayat_pinjam_tb_buku" FromRole="tb_riwayat_pinjam" ToRole="tb_buku" />
+          <NavigationProperty Name="tb_siswa" Relationship="Self.FK_tb_riwayat_pinjam_tb_riwayat_pinjam" FromRole="tb_riwayat_pinjam" ToRole="tb_siswa" />
+          <NavigationProperty Name="tb_status" Relationship="Self.FK_tb_riwayat_pinjam_tb_status" FromRole="tb_riwayat_pinjam" ToRole="tb_status" />
+        </EntityType>
+        <EntityType Name="tb_role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_user_tb_role" FromRole="tb_role" ToRole="tb_user" />
+        </EntityType>
+        <EntityType Name="tb_satuan">
+          <Key>
+            <PropertyRef Name="id_satuan" />
+          </Key>
+          <Property Name="id_satuan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_satuan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_detail_buku_masuk" Relationship="Self.FK_tb_detail_buku_masuk_tb_satuan" FromRole="tb_satuan" ToRole="tb_detail_buku_masuk" />
+        </EntityType>
+        <EntityType Name="tb_siswa">
+          <Key>
+            <PropertyRef Name="nisn" />
+          </Key>
+          <Property Name="nisn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nama_siswa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_kelas" Type="Int32" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_hp" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_kelas" Relationship="Self.FK_tb_siswa_tb_kelas" FromRole="tb_siswa" ToRole="tb_kelas" />
+          <NavigationProperty Name="tb_kembali" Relationship="Self.FK_tb_kembali_tb_kembali" FromRole="tb_siswa" ToRole="tb_kembali" />
+          <NavigationProperty Name="tb_pinjam" Relationship="Self.FK_tb_master_transaksi_tb_anggotas" FromRole="tb_siswa" ToRole="tb_pinjam" />
+          <NavigationProperty Name="tb_riwayat_kembali" Relationship="Self.FK_tb_riwayat_kembali_tb_siswa" FromRole="tb_siswa" ToRole="tb_riwayat_kembali" />
+          <NavigationProperty Name="tb_riwayat_pinjam" Relationship="Self.FK_tb_riwayat_pinjam_tb_riwayat_pinjam" FromRole="tb_siswa" ToRole="tb_riwayat_pinjam" />
+          <NavigationProperty Name="tb_user" Relationship="Self.FK_tb_user_tb_siswa" FromRole="tb_siswa" ToRole="tb_user" />
+        </EntityType>
+        <EntityType Name="tb_status">
+          <Key>
+            <PropertyRef Name="id_status" />
+          </Key>
+          <Property Name="id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_kembali" Relationship="Self.FK_tb_kembali_tb_status" FromRole="tb_status" ToRole="tb_kembali" />
+          <NavigationProperty Name="tb_pinjam" Relationship="Self.FK_tb_pinjam_tb_status" FromRole="tb_status" ToRole="tb_pinjam" />
+          <NavigationProperty Name="tb_riwayat_kembali" Relationship="Self.FK_tb_riwayat_kembali_tb_status" FromRole="tb_status" ToRole="tb_riwayat_kembali" />
+          <NavigationProperty Name="tb_riwayat_pinjam" Relationship="Self.FK_tb_riwayat_pinjam_tb_status" FromRole="tb_status" ToRole="tb_riwayat_pinjam" />
+        </EntityType>
+        <EntityType Name="tb_user">
+          <Key>
+            <PropertyRef Name="id_username" />
+          </Key>
+          <Property Name="id_username" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_pegawai" Type="Int32" Nullable="false" />
+          <Property Name="nisn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_buku_masuk" Relationship="Self.FK_tb_buku_masuk_tb_user" FromRole="tb_user" ToRole="tb_buku_masuk" />
+          <NavigationProperty Name="tb_kembali" Relationship="Self.FK_tb_kembali_tb_user" FromRole="tb_user" ToRole="tb_kembali" />
+          <NavigationProperty Name="tb_pegawai" Relationship="Self.FK_tb_user_tb_pegawai" FromRole="tb_user" ToRole="tb_pegawai" />
+          <NavigationProperty Name="tb_pinjam" Relationship="Self.FK_tb_master_transaksi_tb_user" FromRole="tb_user" ToRole="tb_pinjam" />
+          <NavigationProperty Name="tb_role" Relationship="Self.FK_tb_user_tb_role" FromRole="tb_user" ToRole="tb_role" />
+          <NavigationProperty Name="tb_siswa" Relationship="Self.FK_tb_user_tb_siswa" FromRole="tb_user" ToRole="tb_siswa" />
+        </EntityType>
+        <Association Name="FK_tb_buku_tb_kategori">
+          <End Role="tb_kategori" Type="Self.tb_kategori" Multiplicity="1" />
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kategori">
+              <PropertyRef Name="id_kategori" />
+            </Principal>
+            <Dependent Role="tb_buku">
+              <PropertyRef Name="id_kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_tb_penerbit">
+          <End Role="tb_penerbit" Type="Self.tb_penerbit" Multiplicity="1" />
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_penerbit">
+              <PropertyRef Name="id_penerbit" />
+            </Principal>
+            <Dependent Role="tb_buku">
+              <PropertyRef Name="id_penerbit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_tb_penuliss">
+          <End Role="tb_penuliss" Type="Self.tb_penuliss" Multiplicity="1" />
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_penuliss">
+              <PropertyRef Name="id_penulis" />
+            </Principal>
+            <Dependent Role="tb_buku">
+              <PropertyRef Name="id_penulis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_buku_masuk_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_detail_buku_masuk" Type="Self.tb_detail_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_detail_buku_masuk">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_kembali_tb_buku1">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_detail_kembali" Type="Self.tb_detail_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_detail_kembali">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_pinjam_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_detail_pinjam" Type="Self.tb_detail_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_detail_pinjam">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_keranjang_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_keranjang" Type="Self.tb_keranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_keranjang">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_rak_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_rak" Type="Self.tb_rak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_rak">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_kembali_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_riwayat_kembali" Type="Self.tb_riwayat_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_kembali">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_pinjam_tb_buku">
+          <End Role="tb_buku" Type="Self.tb_buku" Multiplicity="1" />
+          <End Role="tb_riwayat_pinjam" Type="Self.tb_riwayat_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku">
+              <PropertyRef Name="isbn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_pinjam">
+              <PropertyRef Name="isbn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_masuk_tb_pengirim">
+          <End Role="tb_pengirim" Type="Self.tb_pengirim" Multiplicity="1" />
+          <End Role="tb_buku_masuk" Type="Self.tb_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pengirim">
+              <PropertyRef Name="id_pengirim" />
+            </Principal>
+            <Dependent Role="tb_buku_masuk">
+              <PropertyRef Name="id_pengirim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_buku_masuk_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_buku_masuk" Type="Self.tb_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_username" />
+            </Principal>
+            <Dependent Role="tb_buku_masuk">
+              <PropertyRef Name="id_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_buku_masuk_tb_buku_masuk">
+          <End Role="tb_buku_masuk" Type="Self.tb_buku_masuk" Multiplicity="1" />
+          <End Role="tb_detail_buku_masuk" Type="Self.tb_detail_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_buku_masuk">
+              <PropertyRef Name="id_buku_masuk" />
+            </Principal>
+            <Dependent Role="tb_detail_buku_masuk">
+              <PropertyRef Name="id_buku_masuk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_buku_masuk_tb_satuan">
+          <End Role="tb_satuan" Type="Self.tb_satuan" Multiplicity="1" />
+          <End Role="tb_detail_buku_masuk" Type="Self.tb_detail_buku_masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_satuan">
+              <PropertyRef Name="id_satuan" />
+            </Principal>
+            <Dependent Role="tb_detail_buku_masuk">
+              <PropertyRef Name="id_satuan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_kembali_tb_kembali">
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="1" />
+          <End Role="tb_detail_kembali" Type="Self.tb_detail_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kembali">
+              <PropertyRef Name="id_kembali" />
+            </Principal>
+            <Dependent Role="tb_detail_kembali">
+              <PropertyRef Name="id_kembali" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_detail_transaksi_tb_master_transaksi1">
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="1" />
+          <End Role="tb_detail_pinjam" Type="Self.tb_detail_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pinjam">
+              <PropertyRef Name="id_pinjam" />
+            </Principal>
+            <Dependent Role="tb_detail_pinjam">
+              <PropertyRef Name="id_pinjam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_rak_tb_kategori">
+          <End Role="tb_kategori" Type="Self.tb_kategori" Multiplicity="1" />
+          <End Role="tb_rak" Type="Self.tb_rak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kategori">
+              <PropertyRef Name="id_kategori" />
+            </Principal>
+            <Dependent Role="tb_rak">
+              <PropertyRef Name="id_kategori" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_siswa_tb_kelas">
+          <End Role="tb_kelas" Type="Self.tb_kelas" Multiplicity="1" />
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_kelas">
+              <PropertyRef Name="id_kelas" />
+            </Principal>
+            <Dependent Role="tb_siswa">
+              <PropertyRef Name="id_kelas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_kembali_tb_kembali">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_kembali">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_kembali_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_kembali">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_kembali_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_kembali" Type="Self.tb_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_username" />
+            </Principal>
+            <Dependent Role="tb_kembali">
+              <PropertyRef Name="id_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_keranjang_tb_pinjam">
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="1" />
+          <End Role="tb_keranjang" Type="Self.tb_keranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pinjam">
+              <PropertyRef Name="id_pinjam" />
+            </Principal>
+            <Dependent Role="tb_keranjang">
+              <PropertyRef Name="id_pinjam" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_pegawai">
+          <End Role="tb_pegawai" Type="Self.tb_pegawai" Multiplicity="1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pegawai">
+              <PropertyRef Name="id_pegawai" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="id_pegawai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_master_transaksi_tb_anggotas">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_pinjam">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_master_transaksi_tb_user">
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="1" />
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_user">
+              <PropertyRef Name="id_username" />
+            </Principal>
+            <Dependent Role="tb_pinjam">
+              <PropertyRef Name="id_username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_pinjam_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_pinjam" Type="Self.tb_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_pinjam">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_kembali_tb_siswa">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_riwayat_kembali" Type="Self.tb_riwayat_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_kembali">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_kembali_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_riwayat_kembali" Type="Self.tb_riwayat_kembali" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_riwayat_kembali">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_pinjam_tb_riwayat_pinjam">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_riwayat_pinjam" Type="Self.tb_riwayat_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_riwayat_pinjam">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_riwayat_pinjam_tb_status">
+          <End Role="tb_status" Type="Self.tb_status" Multiplicity="1" />
+          <End Role="tb_riwayat_pinjam" Type="Self.tb_riwayat_pinjam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_status">
+              <PropertyRef Name="id_status" />
+            </Principal>
+            <Dependent Role="tb_riwayat_pinjam">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_role">
+          <End Role="tb_role" Type="Self.tb_role" Multiplicity="1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_user_tb_siswa">
+          <End Role="tb_siswa" Type="Self.tb_siswa" Multiplicity="1" />
+          <End Role="tb_user" Type="Self.tb_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_siswa">
+              <PropertyRef Name="nisn" />
+            </Principal>
+            <Dependent Role="tb_user">
+              <PropertyRef Name="nisn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="perpustakaanEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tb_buku" EntityType="Self.tb_buku" />
+          <EntitySet Name="tb_buku_masuk" EntityType="Self.tb_buku_masuk" />
+          <EntitySet Name="tb_detail_buku_masuk" EntityType="Self.tb_detail_buku_masuk" />
+          <EntitySet Name="tb_detail_kembali" EntityType="Self.tb_detail_kembali" />
+          <EntitySet Name="tb_detail_pinjam" EntityType="Self.tb_detail_pinjam" />
+          <EntitySet Name="tb_kategori" EntityType="Self.tb_kategori" />
+          <EntitySet Name="tb_kelas" EntityType="Self.tb_kelas" />
+          <EntitySet Name="tb_kembali" EntityType="Self.tb_kembali" />
+          <EntitySet Name="tb_keranjang" EntityType="Self.tb_keranjang" />
+          <EntitySet Name="tb_pegawai" EntityType="Self.tb_pegawai" />
+          <EntitySet Name="tb_penerbit" EntityType="Self.tb_penerbit" />
+          <EntitySet Name="tb_pengirim" EntityType="Self.tb_pengirim" />
+          <EntitySet Name="tb_penuliss" EntityType="Self.tb_penuliss" />
+          <EntitySet Name="tb_pinjam" EntityType="Self.tb_pinjam" />
+          <EntitySet Name="tb_rak" EntityType="Self.tb_rak" />
+          <EntitySet Name="tb_riwayat_kembali" EntityType="Self.tb_riwayat_kembali" />
+          <EntitySet Name="tb_riwayat_pinjam" EntityType="Self.tb_riwayat_pinjam" />
+          <EntitySet Name="tb_role" EntityType="Self.tb_role" />
+          <EntitySet Name="tb_satuan" EntityType="Self.tb_satuan" />
+          <EntitySet Name="tb_siswa" EntityType="Self.tb_siswa" />
+          <EntitySet Name="tb_status" EntityType="Self.tb_status" />
+          <EntitySet Name="tb_user" EntityType="Self.tb_user" />
+          <AssociationSet Name="FK_tb_buku_tb_kategori" Association="Self.FK_tb_buku_tb_kategori">
+            <End Role="tb_kategori" EntitySet="tb_kategori" />
+            <End Role="tb_buku" EntitySet="tb_buku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_tb_penerbit" Association="Self.FK_tb_buku_tb_penerbit">
+            <End Role="tb_penerbit" EntitySet="tb_penerbit" />
+            <End Role="tb_buku" EntitySet="tb_buku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_tb_penuliss" Association="Self.FK_tb_buku_tb_penuliss">
+            <End Role="tb_penuliss" EntitySet="tb_penuliss" />
+            <End Role="tb_buku" EntitySet="tb_buku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_buku_masuk_tb_buku" Association="Self.FK_tb_detail_buku_masuk_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_detail_buku_masuk" EntitySet="tb_detail_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_kembali_tb_buku1" Association="Self.FK_tb_detail_kembali_tb_buku1">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_detail_kembali" EntitySet="tb_detail_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_pinjam_tb_buku" Association="Self.FK_tb_detail_pinjam_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_detail_pinjam" EntitySet="tb_detail_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_keranjang_tb_buku" Association="Self.FK_tb_keranjang_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_keranjang" EntitySet="tb_keranjang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_rak_tb_buku" Association="Self.FK_tb_rak_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_rak" EntitySet="tb_rak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_kembali_tb_buku" Association="Self.FK_tb_riwayat_kembali_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_riwayat_kembali" EntitySet="tb_riwayat_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_pinjam_tb_buku" Association="Self.FK_tb_riwayat_pinjam_tb_buku">
+            <End Role="tb_buku" EntitySet="tb_buku" />
+            <End Role="tb_riwayat_pinjam" EntitySet="tb_riwayat_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_masuk_tb_pengirim" Association="Self.FK_tb_buku_masuk_tb_pengirim">
+            <End Role="tb_pengirim" EntitySet="tb_pengirim" />
+            <End Role="tb_buku_masuk" EntitySet="tb_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_buku_masuk_tb_user" Association="Self.FK_tb_buku_masuk_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_buku_masuk" EntitySet="tb_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_buku_masuk_tb_buku_masuk" Association="Self.FK_tb_detail_buku_masuk_tb_buku_masuk">
+            <End Role="tb_buku_masuk" EntitySet="tb_buku_masuk" />
+            <End Role="tb_detail_buku_masuk" EntitySet="tb_detail_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_buku_masuk_tb_satuan" Association="Self.FK_tb_detail_buku_masuk_tb_satuan">
+            <End Role="tb_satuan" EntitySet="tb_satuan" />
+            <End Role="tb_detail_buku_masuk" EntitySet="tb_detail_buku_masuk" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_kembali_tb_kembali" Association="Self.FK_tb_detail_kembali_tb_kembali">
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+            <End Role="tb_detail_kembali" EntitySet="tb_detail_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_detail_transaksi_tb_master_transaksi1" Association="Self.FK_tb_detail_transaksi_tb_master_transaksi1">
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+            <End Role="tb_detail_pinjam" EntitySet="tb_detail_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_rak_tb_kategori" Association="Self.FK_tb_rak_tb_kategori">
+            <End Role="tb_kategori" EntitySet="tb_kategori" />
+            <End Role="tb_rak" EntitySet="tb_rak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_siswa_tb_kelas" Association="Self.FK_tb_siswa_tb_kelas">
+            <End Role="tb_kelas" EntitySet="tb_kelas" />
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_kembali_tb_kembali" Association="Self.FK_tb_kembali_tb_kembali">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_kembali_tb_status" Association="Self.FK_tb_kembali_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_kembali_tb_user" Association="Self.FK_tb_kembali_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_kembali" EntitySet="tb_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_keranjang_tb_pinjam" Association="Self.FK_tb_keranjang_tb_pinjam">
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+            <End Role="tb_keranjang" EntitySet="tb_keranjang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_pegawai" Association="Self.FK_tb_user_tb_pegawai">
+            <End Role="tb_pegawai" EntitySet="tb_pegawai" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_master_transaksi_tb_anggotas" Association="Self.FK_tb_master_transaksi_tb_anggotas">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_master_transaksi_tb_user" Association="Self.FK_tb_master_transaksi_tb_user">
+            <End Role="tb_user" EntitySet="tb_user" />
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_pinjam_tb_status" Association="Self.FK_tb_pinjam_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_pinjam" EntitySet="tb_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_kembali_tb_siswa" Association="Self.FK_tb_riwayat_kembali_tb_siswa">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_riwayat_kembali" EntitySet="tb_riwayat_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_kembali_tb_status" Association="Self.FK_tb_riwayat_kembali_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_riwayat_kembali" EntitySet="tb_riwayat_kembali" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_pinjam_tb_riwayat_pinjam" Association="Self.FK_tb_riwayat_pinjam_tb_riwayat_pinjam">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_riwayat_pinjam" EntitySet="tb_riwayat_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_riwayat_pinjam_tb_status" Association="Self.FK_tb_riwayat_pinjam_tb_status">
+            <End Role="tb_status" EntitySet="tb_status" />
+            <End Role="tb_riwayat_pinjam" EntitySet="tb_riwayat_pinjam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_role" Association="Self.FK_tb_user_tb_role">
+            <End Role="tb_role" EntitySet="tb_role" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_user_tb_siswa" Association="Self.FK_tb_user_tb_siswa">
+            <End Role="tb_siswa" EntitySet="tb_siswa" />
+            <End Role="tb_user" EntitySet="tb_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="perpustakaanModelStoreContainer" CdmEntityContainer="perpustakaanEntities3">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="perpustakaanModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_buku">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_buku">
+              <MappingFragment StoreEntitySet="tb_buku">
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="judul_buku" ColumnName="judul_buku" />
+                <ScalarProperty Name="id_penulis" ColumnName="id_penulis" />
+                <ScalarProperty Name="id_penerbit" ColumnName="id_penerbit" />
+                <ScalarProperty Name="id_kategori" ColumnName="id_kategori" />
+                <ScalarProperty Name="tanggal_terbit" ColumnName="tanggal_terbit" />
+                <ScalarProperty Name="jumlah_halaman" ColumnName="jumlah_halaman" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_buku_masuk">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_buku_masuk">
+              <MappingFragment StoreEntitySet="tb_buku_masuk">
+                <ScalarProperty Name="id_buku_masuk" ColumnName="id_buku_masuk" />
+                <ScalarProperty Name="id_pengirim" ColumnName="id_pengirim" />
+                <ScalarProperty Name="id_username" ColumnName="id_username" />
+                <ScalarProperty Name="tanggal_masuk" ColumnName="tanggal_masuk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_detail_buku_masuk">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_detail_buku_masuk">
+              <MappingFragment StoreEntitySet="tb_detail_buku_masuk">
+                <ScalarProperty Name="id_detail_buku_masuk" ColumnName="id_detail_buku_masuk" />
+                <ScalarProperty Name="id_buku_masuk" ColumnName="id_buku_masuk" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="id_satuan" ColumnName="id_satuan" />
+                <ScalarProperty Name="jumlah_isi" ColumnName="jumlah_isi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_detail_kembali">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_detail_kembali">
+              <MappingFragment StoreEntitySet="tb_detail_kembali">
+                <ScalarProperty Name="id_detail_kembali" ColumnName="id_detail_kembali" />
+                <ScalarProperty Name="id_kembali" ColumnName="id_kembali" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_detail_pinjam">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_detail_pinjam">
+              <MappingFragment StoreEntitySet="tb_detail_pinjam">
+                <ScalarProperty Name="id_detail_pinjam" ColumnName="id_detail_pinjam" />
+                <ScalarProperty Name="id_pinjam" ColumnName="id_pinjam" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_kategori">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_kategori">
+              <MappingFragment StoreEntitySet="tb_kategori">
+                <ScalarProperty Name="id_kategori" ColumnName="id_kategori" />
+                <ScalarProperty Name="nama_kategori" ColumnName="nama_kategori" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_kelas">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_kelas">
+              <MappingFragment StoreEntitySet="tb_kelas">
+                <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+                <ScalarProperty Name="nama_kelas" ColumnName="nama_kelas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_kembali">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_kembali">
+              <MappingFragment StoreEntitySet="tb_kembali">
+                <ScalarProperty Name="id_kembali" ColumnName="id_kembali" />
+                <ScalarProperty Name="tanggal_kembali" ColumnName="tanggal_kembali" />
+                <ScalarProperty Name="nisn" ColumnName="nisn" />
+                <ScalarProperty Name="banyak_buku" ColumnName="banyak_buku" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="id_username" ColumnName="id_username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_keranjang">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_keranjang">
+              <MappingFragment StoreEntitySet="tb_keranjang">
+                <ScalarProperty Name="id_keranjang" ColumnName="id_keranjang" />
+                <ScalarProperty Name="id_pinjam" ColumnName="id_pinjam" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pegawai">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_pegawai">
+              <MappingFragment StoreEntitySet="tb_pegawai">
+                <ScalarProperty Name="id_pegawai" ColumnName="id_pegawai" />
+                <ScalarProperty Name="nama_pegawai" ColumnName="nama_pegawai" />
+                <ScalarProperty Name="jenis_kelamin" ColumnName="jenis_kelamin" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+                <ScalarProperty Name="tempat_lahir" ColumnName="tempat_lahir" />
+                <ScalarProperty Name="tanggal_lahir" ColumnName="tanggal_lahir" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_penerbit">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_penerbit">
+              <MappingFragment StoreEntitySet="tb_penerbit">
+                <ScalarProperty Name="id_penerbit" ColumnName="id_penerbit" />
+                <ScalarProperty Name="nama_penerbit" ColumnName="nama_penerbit" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pengirim">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_pengirim">
+              <MappingFragment StoreEntitySet="tb_pengirim">
+                <ScalarProperty Name="id_pengirim" ColumnName="id_pengirim" />
+                <ScalarProperty Name="nama_pengirim" ColumnName="nama_pengirim" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_penuliss">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_penuliss">
+              <MappingFragment StoreEntitySet="tb_penuliss">
+                <ScalarProperty Name="id_penulis" ColumnName="id_penulis" />
+                <ScalarProperty Name="nama_penulis" ColumnName="nama_penulis" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_pinjam">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_pinjam">
+              <MappingFragment StoreEntitySet="tb_pinjam">
+                <ScalarProperty Name="id_pinjam" ColumnName="id_pinjam" />
+                <ScalarProperty Name="tanggal_pinjam" ColumnName="tanggal_pinjam" />
+                <ScalarProperty Name="nisn" ColumnName="nisn" />
+                <ScalarProperty Name="banyak_buku" ColumnName="banyak_buku" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="id_username" ColumnName="id_username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_rak">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_rak">
+              <MappingFragment StoreEntitySet="tb_rak">
+                <ScalarProperty Name="id_rak" ColumnName="id_rak" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="id_kategori" ColumnName="id_kategori" />
+                <ScalarProperty Name="lokasi_rak" ColumnName="lokasi_rak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_riwayat_kembali">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_riwayat_kembali">
+              <MappingFragment StoreEntitySet="tb_riwayat_kembali">
+                <ScalarProperty Name="id_riwayat_kembali" ColumnName="id_riwayat_kembali" />
+                <ScalarProperty Name="nisn" ColumnName="nisn" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="tanggal_kembali" ColumnName="tanggal_kembali" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_riwayat_pinjam">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_riwayat_pinjam">
+              <MappingFragment StoreEntitySet="tb_riwayat_pinjam">
+                <ScalarProperty Name="id_riwayat_pinjam" ColumnName="id_riwayat_pinjam" />
+                <ScalarProperty Name="nisn" ColumnName="nisn" />
+                <ScalarProperty Name="isbn" ColumnName="isbn" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="tanggal_pinjam" ColumnName="tanggal_pinjam" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_role">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_role">
+              <MappingFragment StoreEntitySet="tb_role">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="nama_role" ColumnName="nama_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_satuan">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_satuan">
+              <MappingFragment StoreEntitySet="tb_satuan">
+                <ScalarProperty Name="id_satuan" ColumnName="id_satuan" />
+                <ScalarProperty Name="nama_satuan" ColumnName="nama_satuan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_siswa">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_siswa">
+              <MappingFragment StoreEntitySet="tb_siswa">
+                <ScalarProperty Name="nisn" ColumnName="nisn" />
+                <ScalarProperty Name="nama_siswa" ColumnName="nama_siswa" />
+                <ScalarProperty Name="id_kelas" ColumnName="id_kelas" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_status">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_status">
+              <MappingFragment StoreEntitySet="tb_status">
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="nama_status" ColumnName="nama_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_user">
+            <EntityTypeMapping TypeName="perpustakaanModel.tb_user">
+              <MappingFragment StoreEntitySet="tb_user">
+                <ScalarProperty Name="id_username" ColumnName="id_username" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_pegawai" ColumnName="id_pegawai" />
+                <ScalarProperty Name="nisn" ColumnName="nisn" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

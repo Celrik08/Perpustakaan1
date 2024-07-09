@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3e36094150d44bd7b57cccd29b725286" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="perpustakaanModel.sysdiagram" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_buku" Width="1.5" PointX="9.625" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_buku_masuk" Width="1.5" PointX="9.875" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_detail_buku_masuk" Width="1.5" PointX="14.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_detail_kembali" Width="1.5" PointX="21.625" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_detail_pinjam" Width="1.5" PointX="9.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_kategori" Width="1.5" PointX="14.125" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_kelas" Width="1.5" PointX="28.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_kembali" Width="1.5" PointX="18.625" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_keranjang" Width="1.5" PointX="6.375" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_pegawai" Width="1.5" PointX="25.125" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_penerbit" Width="1.5" PointX="13.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_pengirim" Width="1.5" PointX="6.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_penuliss" Width="1.5" PointX="6.125" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_pinjam" Width="1.5" PointX="14" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_rak" Width="1.5" PointX="14.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_riwayat_kembali" Width="1.5" PointX="18.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_riwayat_pinjam" Width="1.5" PointX="14.375" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_role" Width="1.5" PointX="25.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_satuan" Width="1.5" PointX="3.375" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_siswa" Width="1.5" PointX="25.125" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_status" Width="1.5" PointX="21.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="perpustakaanModel.tb_user" Width="1.5" PointX="19" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_buku_tb_kategori" ManuallyRouted="true" >
+          <ConnectorPoint PointX="14.125" PointY="14.112174644933873" />
+          <ConnectorPoint PointX="13.778917906566036" PointY="14.112174644933873" />
+          <ConnectorPoint PointX="13.778917906566036" PointY="16.155323336647616" />
+          <ConnectorPoint PointX="13.458333333333334" PointY="16.155323336647616" />
+          <ConnectorPoint PointX="13.291666666666666" PointY="16.155323336647616" />
+          <ConnectorPoint PointX="12.364738552194664" PointY="16.155323336647616" />
+          <ConnectorPoint PointX="12.081467325236433" PointY="16.155323336647616" />
+          <ConnectorPoint PointX="11.125" PointY="16.155323336647616" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_buku_tb_penerbit" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_buku_tb_penuliss" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_detail_buku_masuk_tb_buku" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.125" PointY="15.386379267692192" />
+          <ConnectorPoint PointX="12.506374306519945" PointY="15.386379267692192" />
+          <ConnectorPoint PointX="12.506374306519945" PointY="1.7553132676596437" />
+          <ConnectorPoint PointX="14.375" PointY="1.7553132676596437" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_detail_kembali_tb_buku1" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.125" PointY="15.382214078323933" />
+          <ConnectorPoint PointX="12.28140521886133" PointY="15.382214078323933" />
+          <ConnectorPoint PointX="12.28140521886133" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="13.291666666666666" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="13.458333333333334" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="20.316853456983115" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="20.483520123649779" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="21.116916293309703" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="21.25" PointY="18.547587890624996" />
+          <ConnectorPoint PointX="21.25" PointY="17.265887474335543" />
+          <ConnectorPoint PointX="21.625" PointY="17.265887474335543" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_detail_pinjam_tb_buku" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.125" PointY="15.40062585913077" />
+          <ConnectorPoint PointX="11.629042159292514" PointY="15.40062585913077" />
+          <ConnectorPoint PointX="11.629042159292514" PointY="8.3936473519231178" />
+          <ConnectorPoint PointX="11.25" PointY="8.3936473519231178" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_keranjang_tb_buku" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_rak_tb_buku" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.125" PointY="15.397676335432806" />
+          <ConnectorPoint PointX="12.164800658569769" PointY="15.397676335432806" />
+          <ConnectorPoint PointX="12.164800658569769" PointY="17.064316608414881" />
+          <ConnectorPoint PointX="12.198071885527996" PointY="17.064316608414881" />
+          <ConnectorPoint PointX="12.364738552194664" PointY="17.064316608414881" />
+          <ConnectorPoint PointX="13.291666666666666" PointY="17.064316608414881" />
+          <ConnectorPoint PointX="13.458333333333334" PointY="17.064316608414881" />
+          <ConnectorPoint PointX="13.666666666666666" PointY="17.064316608414881" />
+          <ConnectorPoint PointX="13.833333333333334" PointY="17.064316608414881" />
+          <ConnectorPoint PointX="14.5" PointY="17.064316608414881" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_riwayat_kembali_tb_buku" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.125" PointY="15.391363641205967" />
+          <ConnectorPoint PointX="12.227767360877381" PointY="15.391363641205967" />
+          <ConnectorPoint PointX="12.227767360877381" PointY="15.512601366239497" />
+          <ConnectorPoint PointX="13.666666666666666" PointY="15.512601366239497" />
+          <ConnectorPoint PointX="13.86225123989937" PointY="15.512601366239497" />
+          <ConnectorPoint PointX="18.75" PointY="15.512601366239497" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_riwayat_pinjam_tb_buku" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11.125" PointY="15.387228516043981" />
+          <ConnectorPoint PointX="11.923662886296109" PointY="15.387228516043981" />
+          <ConnectorPoint PointX="11.923662886296109" PointY="5.7881168549732989" />
+          <ConnectorPoint PointX="12.423040973186611" PointY="5.788116854973298" />
+          <ConnectorPoint PointX="12.589707639853279" PointY="5.7881168549732989" />
+          <ConnectorPoint PointX="14.375" PointY="5.7881168549732989" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_buku_masuk_tb_pengirim" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_buku_masuk_tb_user" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_detail_buku_masuk_tb_buku_masuk" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_detail_buku_masuk_tb_satuan" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_detail_kembali_tb_kembali" ManuallyRouted="true" >
+          <ConnectorPoint PointX="20.125" PointY="19.716116164705042" />
+          <ConnectorPoint PointX="20.400186790316447" PointY="19.716116164705042" />
+          <ConnectorPoint PointX="20.400186790316447" PointY="17.070133215972984" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="17.070133215972984" />
+          <ConnectorPoint PointX="21.116916293309703" PointY="17.070133215972984" />
+          <ConnectorPoint PointX="21.625" PointY="17.070133215972984" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_detail_transaksi_tb_master_transaksi1" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_rak_tb_kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_siswa_tb_kelas" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_kembali_tb_kembali" ManuallyRouted="true" >
+          <ConnectorPoint PointX="25.125" PointY="10.162719264119389" />
+          <ConnectorPoint PointX="24.628420729516236" PointY="10.162719264119389" />
+          <ConnectorPoint PointX="24.628420729516236" PointY="20.154834296292652" />
+          <ConnectorPoint PointX="21.116916293309703" PointY="20.154834296292652" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="20.154834296292652" />
+          <ConnectorPoint PointX="20.125" PointY="20.154834296292652" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_kembali_tb_status" ManuallyRouted="true" >
+          <ConnectorPoint PointX="21.875" PointY="9.393554355903726" />
+          <ConnectorPoint PointX="21.033582959976371" PointY="9.393554355903726" />
+          <ConnectorPoint PointX="21.033582959976371" PointY="20.507407025445978" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="20.507407025445978" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="20.507407025445978" />
+          <ConnectorPoint PointX="20.125" PointY="20.507407025445978" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_kembali_tb_user" ManuallyRouted="true" >
+          <ConnectorPoint PointX="20.5" PointY="5.3963625120902883" />
+          <ConnectorPoint PointX="20.875" PointY="5.3963625120902883" />
+          <ConnectorPoint PointX="20.875" PointY="20.716030313242811" />
+          <ConnectorPoint PointX="20.125" PointY="20.716030313242811" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_keranjang_tb_pinjam" ManuallyRouted="true" >
+          <ConnectorPoint PointX="14" PointY="9.3738335938187518" />
+          <ConnectorPoint PointX="13.676305898299862" PointY="9.3738335938187518" />
+          <ConnectorPoint PointX="13.676305898299862" PointY="7" />
+          <ConnectorPoint PointX="12.589707639853279" PointY="6.9999999999999991" />
+          <ConnectorPoint PointX="12.423040973186611" PointY="7" />
+          <ConnectorPoint PointX="12.006996219629443" PointY="6.9999999999999991" />
+          <ConnectorPoint PointX="11.840329552962775" PointY="7" />
+          <ConnectorPoint PointX="8.25" PointY="7" />
+          <ConnectorPoint PointX="8.25" PointY="7.67905713448966" />
+          <ConnectorPoint PointX="7.875" PointY="7.67905713448966" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_user_tb_pegawai" ManuallyRouted="false" />
+        <AssociationConnector Association="perpustakaanModel.FK_tb_master_transaksi_tb_anggotas" ManuallyRouted="true" >
+          <ConnectorPoint PointX="25.125" PointY="10.160778475290321" />
+          <ConnectorPoint PointX="24.484452967648636" PointY="10.160778475290321" />
+          <ConnectorPoint PointX="24.317786300981972" PointY="10.160778475290321" />
+          <ConnectorPoint PointX="23.700715670445085" PointY="10.160778475290321" />
+          <ConnectorPoint PointX="23.700715670445085" PointY="11.047587890625" />
+          <ConnectorPoint PointX="21.116916293309703" PointY="11.047587890624998" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="11.047587890625" />
+          <ConnectorPoint PointX="15.875" PointY="11.047587890625" />
+          <ConnectorPoint PointX="15.875" PointY="9.7591160347686881" />
+          <ConnectorPoint PointX="15.5" PointY="9.7591160347686881" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_master_transaksi_tb_user" ManuallyRouted="true" >
+          <ConnectorPoint PointX="19" PointY="5.3937234957156024" />
+          <ConnectorPoint PointX="18.252798722168528" PointY="5.3937234957156024" />
+          <ConnectorPoint PointX="18.252798722168528" PointY="10.352524584860898" />
+          <ConnectorPoint PointX="15.958333333333334" PointY="10.352524584860898" />
+          <ConnectorPoint PointX="15.791666666666666" PointY="10.352524584860898" />
+          <ConnectorPoint PointX="15.5" PointY="10.352524584860898" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_pinjam_tb_status" ManuallyRouted="true" >
+          <ConnectorPoint PointX="21.875" PointY="9.3840000364646077" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="9.3840000364646077" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="9.3840000364646077" />
+          <ConnectorPoint PointX="18.33613205550186" PointY="9.3840000364646077" />
+          <ConnectorPoint PointX="18.169465388835196" PointY="9.3840000364646077" />
+          <ConnectorPoint PointX="16.654695630947806" PointY="9.3840000364646077" />
+          <ConnectorPoint PointX="16.654695630947806" PointY="10.159281234478462" />
+          <ConnectorPoint PointX="15.958333333333334" PointY="10.159281234478462" />
+          <ConnectorPoint PointX="15.791666666666666" PointY="10.159281234478462" />
+          <ConnectorPoint PointX="15.5" PointY="10.159281234478462" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_riwayat_kembali_tb_siswa" ManuallyRouted="true" >
+          <ConnectorPoint PointX="25.125" PointY="10.152438546829735" />
+          <ConnectorPoint PointX="24.620646931394084" PointY="10.152438546829735" />
+          <ConnectorPoint PointX="24.620646931394084" PointY="15.316505032717611" />
+          <ConnectorPoint PointX="21.116916293309703" PointY="15.316505032717609" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="15.316505032717611" />
+          <ConnectorPoint PointX="20.25" PointY="15.316505032717611" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_riwayat_kembali_tb_status" ManuallyRouted="true" >
+          <ConnectorPoint PointX="21.875" PointY="9.3952709524171141" />
+          <ConnectorPoint PointX="21.025186790316447" PointY="9.3952709524171141" />
+          <ConnectorPoint PointX="21.025186790316447" PointY="16.055499334596167" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="16.055499334596167" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="16.055499334596167" />
+          <ConnectorPoint PointX="20.25" PointY="16.055499334596167" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_riwayat_pinjam_tb_riwayat_pinjam" ManuallyRouted="true" >
+          <ConnectorPoint PointX="25.125" PointY="10.166451593456719" />
+          <ConnectorPoint PointX="24.484452967648636" PointY="10.166451593456719" />
+          <ConnectorPoint PointX="24.317786300981972" PointY="10.166451593456719" />
+          <ConnectorPoint PointX="23.898787542837766" PointY="10.166451593456719" />
+          <ConnectorPoint PointX="23.898787542837766" PointY="8.375" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="8.375" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="8.375" />
+          <ConnectorPoint PointX="18.33613205550186" PointY="8.375" />
+          <ConnectorPoint PointX="18.169465388835196" PointY="8.375" />
+          <ConnectorPoint PointX="16.458333333333332" PointY="8.375" />
+          <ConnectorPoint PointX="16.291666666666668" PointY="8.375" />
+          <ConnectorPoint PointX="16.25" PointY="8.375" />
+          <ConnectorPoint PointX="16.25" PointY="5.549648713270777" />
+          <ConnectorPoint PointX="15.875" PointY="5.549648713270777" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_riwayat_pinjam_tb_status" ManuallyRouted="true" >
+          <ConnectorPoint PointX="21.875" PointY="9.3954402709079954" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="9.3954402709079954" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="9.3954402709079954" />
+          <ConnectorPoint PointX="18.33613205550186" PointY="9.3954402709079954" />
+          <ConnectorPoint PointX="18.169465388835196" PointY="9.3954402709079954" />
+          <ConnectorPoint PointX="16.375" PointY="9.3954402709079954" />
+          <ConnectorPoint PointX="16.375" PointY="6.3558320640869042" />
+          <ConnectorPoint PointX="16.333333333333332" PointY="6.3558320640869033" />
+          <ConnectorPoint PointX="16.166666666666668" PointY="6.3558320640869042" />
+          <ConnectorPoint PointX="15.875" PointY="6.3558320640869042" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_user_tb_role" ManuallyRouted="true" >
+          <ConnectorPoint PointX="25.25" PointY="14.609839002261264" />
+          <ConnectorPoint PointX="24.711754062849568" PointY="14.609839002261264" />
+          <ConnectorPoint PointX="24.537313598060752" PointY="14.609839002261264" />
+          <ConnectorPoint PointX="24.401119634315304" PointY="14.609839002261264" />
+          <ConnectorPoint PointX="24.401119634315304" PointY="6.3361678407646878" />
+          <ConnectorPoint PointX="23.983209190075527" PointY="6.3361678407646869" />
+          <ConnectorPoint PointX="23.816542523408863" PointY="6.3361678407646878" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="6.3361678407646869" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="6.3361678407646878" />
+          <ConnectorPoint PointX="20.5" PointY="6.3361678407646878" />
+        </AssociationConnector>
+        <AssociationConnector Association="perpustakaanModel.FK_tb_user_tb_siswa" ManuallyRouted="true" >
+          <ConnectorPoint PointX="25.125" PointY="10.151112535789085" />
+          <ConnectorPoint PointX="24.484452967648636" PointY="10.151112535789085" />
+          <ConnectorPoint PointX="24.317786300981972" PointY="10.151112535789085" />
+          <ConnectorPoint PointX="23.899875856742195" PointY="10.151112535789085" />
+          <ConnectorPoint PointX="23.899875856742195" PointY="6.1425058047406429" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="6.142505804740642" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="6.1425058047406429" />
+          <ConnectorPoint PointX="20.5" PointY="6.1425058047406429" />
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
